@@ -5,10 +5,18 @@ export class Home {
   readonly navbarBrand: Locator;
   readonly home: Locator;
   readonly contact: Locator;
+  readonly contactDialog: Locator;
+  readonly contactClose: Locator;
   readonly aboutus: Locator;
+  readonly aboutUsDialog: Locator;
+  readonly aboutUsClose: Locator;
   readonly cart: Locator;
   readonly login: Locator;
-  readonly signup: Locator;
+  readonly loginDialog: Locator;
+  readonly loginClose: Locator;
+  readonly signUp: Locator;
+  readonly signUpDialog: Locator;
+  readonly closeSignUp: Locator;
   readonly logout: Locator;
   readonly welcomeUser: Locator;
   readonly firstSlideSamsung: Locator;
@@ -31,10 +39,18 @@ export class Home {
     this.navbarBrand = page.getByRole('link', {name: 'PRODUCT STORE',});
     this.home = page.getByRole('link', {name: 'Home',});
     this.contact = page.getByRole('link', {name: 'Contact',});
+    this.contactDialog = page.locator('div.modal-content:visible')
+    this.contactClose = page.getByRole('button', { name: 'Close' }).first()
     this.aboutus = page.getByRole('link', {name: 'About us',});
+    this.aboutUsDialog = page.locator('div.modal-content:visible')
+    this.aboutUsClose = page.locator('span').filter({ hasText: '×' }).first()
     this.cart = page.getByRole('link', {name: 'Cart',});
-    this.login = page.getByRole('link', {name: 'Login',});
-    this.signup = page.getByRole('link', {name: 'Sign up',});
+    this.login = page.locator('li:has-text("Log in")')
+    this.loginDialog = page.locator("//div[@id='logInModal']//div[@class='modal-content']")
+    this.loginClose = page.getByText('×')
+    this.signUp = page.getByRole('link', {name: 'Sign up',});
+    this.signUpDialog = page.getByRole('link', {name: 'Sign up',});
+    this.closeSignUp = page.getByText('×')
     this.logout = page.getByRole('link', { name: 'Log out' })
     this.welcomeUser = page.locator("#nameofuser")
     this.firstSlideSamsung = page.getByRole('img', { name: 'First slide' });
@@ -53,7 +69,7 @@ export class Home {
     this.footer = page.locator('#footc');
   }
 
-  async goto() {
+  async open() {
     await this.page.goto('/');
   }
 
@@ -63,22 +79,43 @@ export class Home {
 
   async openContact(){
     await this.contact.click();
+    await expect(this.contactDialog).toBeVisible();
+  }
+
+  async closeContact(){
+    await this.contactClose.click();
   }
 
   async openAboutus(){
+    await this.aboutus.click();
+    await expect(this.aboutUsDialog).toBeVisible();
+  }
+
+  async closeAboutus(){
     await this.aboutus.click();
   }
 
   async openCart(){
     await this.cart.click();
+    await this.page.goto('/cart.html');
   }
 
   async openLogin(){
     await this.login.click();
+    await expect(this.loginDialog).toBeVisible();
   }
 
-  async openSignup(){
-    await this.signup.click();
+  async closeLogin(){
+    await this.loginClose.click();
+  }
+
+  async openSignUp(){
+    await this.signUp.click();
+    await expect(this.signUpDialog).toBeVisible();
+  }
+
+  async closeSignUpDialog(){
+    await this.closeSignUp.click();
   }
 
   async checkProduct(product: string): Promise<void> {
@@ -86,8 +123,7 @@ export class Home {
   }
 
   async openProductDetail(product: string){
-    return this.page.getByRole('link', { name: product }).click();
-
+    await this.page.getByRole('link', { name: product }).click();
   }
 
   async categoriesPhones(){
