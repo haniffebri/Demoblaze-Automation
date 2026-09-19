@@ -42,4 +42,34 @@ export class Login {
     await this.loginTombol.click();
   }
   
+  async verifyLoginWithEmptyFields(): Promise<void> {
+    const dialogPromise = this.page.waitForEvent('dialog');
+    const dialog = await dialogPromise;
+
+    await expect(dialog.message()).toBe('Please fill out Username and Password.');
+    await expect(dialog.type()).toBe('alert');
+
+    await dialog.accept();
+  }
+
+  async verifyUserNotRegistered(): Promise<void> {
+    const dialogPromise = this.page.waitForEvent('dialog');
+    const dialog = await dialogPromise;
+
+    await expect(dialog.message()).toBe('User does not exist.');
+    await expect(dialog.type()).toBe('alert');
+
+    await dialog.accept();
+  }
+
+  async verifyWrongData(): Promise<void> {
+    const dialogPromise = this.page.waitForEvent('dialog');
+    const dialog = await dialogPromise;
+
+    await expect(dialog.message()).toBe('Wrong password.');
+    await expect(dialog.type()).toBe('alert');
+
+    await dialog.accept();
+  }
+
 }
