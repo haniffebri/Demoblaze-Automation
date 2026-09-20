@@ -1,9 +1,7 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator, expect, Dialog } from '@playwright/test';
 
 export class Login {
   readonly page: Page;
-  readonly login: Locator;
-  readonly loginDialog: Locator;
   readonly usernameFieldLogin: Locator;
   readonly passwordFieldLogin: Locator;
   readonly loginXClose: Locator;
@@ -12,11 +10,9 @@ export class Login {
 
   constructor(page: Page) {
     this.page = page;
-    this.login = page.getByRole('link', {name: 'Login',});
-    this.loginDialog = page.locator("//div[@id='logInModal']//div[@class='modal-content']")
     this.usernameFieldLogin = page.locator('#loginusername')
     this.passwordFieldLogin = page.locator('#loginpassword')
-    this.loginXClose = page.getByText('×')
+    this.loginXClose = page.locator('button.close:visible')
     this.loginCloseButton = page.locator('button.btn.btn-secondary:visible')
     this.loginTombol = page.getByRole('button', { name: 'Log in' })
   }
@@ -43,13 +39,16 @@ export class Login {
   }
   
   async verifyLoginWithEmptyFields(): Promise<void> {
-    const dialogPromise = this.page.waitForEvent('dialog');
-    const dialog = await dialogPromise;
+  const dialogPromise = this.page.waitForEvent('dialog');
+  const clickPromise = this.loginTombol.click();
 
-    await expect(dialog.message()).toBe('Please fill out Username and Password.');
-    await expect(dialog.type()).toBe('alert');
+  const dialog = await dialogPromise;
 
-    await dialog.accept();
+  expect(dialog.type()).toBe('alert');
+  expect(dialog.message()).toBe('Please fill out Username and Password.');
+
+  await dialog.accept();
+  await clickPromise;
   }
 
   async verifyUserNotRegistered(): Promise<void> {
