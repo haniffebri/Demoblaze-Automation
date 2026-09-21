@@ -49,8 +49,18 @@ export class Signup {
   async signUpButton(){
     await this.signUpTombol.click();
   }
+
+  async verifyRegisterSuccess(): Promise<void> {
+    const dialogPromise = this.page.waitForEvent('dialog');
+    const dialog = await dialogPromise;
+
+    await expect(dialog.message()).toBe('Sign up successful.');
+    await expect(dialog.type()).toBe('alert');
+
+    await dialog.accept();
+  }
   
-  async verifyLoginWithEmptyFields(): Promise<void> {
+  async verifySignUpWithEmptyFields(): Promise<void> {
   const dialogPromise = this.page.waitForEvent('dialog');
   const clickPromise = this.signUpTombol.click();
 
