@@ -3,7 +3,7 @@ import { Home } from '../pages/Home';
 import { Signup } from '../pages/Signup';
 import users from '../fixtures/login.fixture.json';
 
-test.describe('Module: Login', () => {
+test.describe('Module: Signup', () => {
   let signup: Signup;
   let home: Home;
 

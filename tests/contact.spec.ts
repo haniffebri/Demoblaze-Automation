@@ -1,7 +1,5 @@
 import { test } from '@playwright/test';
 import { Home } from '../pages/Home';
-import { Login } from '../pages/Login';
-import users from '../fixtures/login.fixture.json';
 import { Contact } from '../pages/Contact';
 
 test.describe('Module: Contact', () => {
@@ -91,11 +89,11 @@ test.describe('Module: Contact', () => {
     await contact.verifySendMessageSuccess();
   });
 
-  test('TC-Contact-014: User can close dialog using X button (Guest)', async () => {
+  test('TC-Contact-014: User can close dialog using X button', async () => {
     await contact.closeXContact();
   });
 
-  test('TC-Contact-015: User can close dialog using Close button (Guest)', async () => {
+  test('TC-Contact-015: User can close dialog using Close button', async () => {
     await contact.closeButtonContact();
   });
 });
