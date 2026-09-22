@@ -20,10 +20,6 @@ export class Contact {
     this.contactCloseButton = page.locator('button.btn.btn-secondary:visible')
   }
 
-  async open() {
-    await this.page.goto('/');
-  }
-
   async inputAllFieldContact(
   options: {
     email?: string;

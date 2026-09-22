@@ -17,10 +17,6 @@ export class Signup {
     this.signUpTombol = page.getByRole('button', { name: 'Sign up' })
   }
 
-  async open() {
-    await this.page.goto('/');
-  }
-
   async inputUnregisteredDataSignUp(username?: string,password?: string): Promise<{ username: string; password: string }> {
     const random = (length: number, charset: string): string => Array.from({ length }, () => charset[Math.floor(Math.random() * charset.length)]).join('');
 

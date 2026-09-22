@@ -14,51 +14,54 @@ test.describe('Module: About Us', () => {
     await home.openAboutus();
   });
 
-  test('TC-Login-001: Video can running by click poster', async () => {
-    await signup.inputUnregisteredDataSignUp();
-    await signup.signUpButton();
+  test('TC-ABS-001: Video can running by click poster', async () => {
+    await aboutus.playVideoPoster
   });
 
-  test('TC-Login-002: Video can running by click big play button', async () => {
-    await signup.inputDataSignUp('cuking', 'kucingcikung');
-    await signup.signUpButton();
-    await signup.verifyUserRegistered();
+  test('TC-ABS-002: Video can running by click big play button', async () => {
+    await aboutus.playVideoBigPlayButton
   });
 
-  test('TC-Login-003: Sign Up with registered username and unregistered password', async () => {
-    await signup.inputUnregisteredDataSignUp('cuking');
-    await signup.signUpButton();
-    await signup.verifyUserRegistered();
+  test('TC-ABS-003: Play and pause video', async () => {
+    await aboutus.playVideoBigPlayButton();
+    await aboutus.playAndPauseVideo();
   });
 
-  test('TC-Login-004: Sign Up with unregistered username and registered password', async () => {
-    await signup.inputUnregisteredDataSignUp(undefined, users.valid1.password);
-    await signup.signUpButton();
-    await signup.verifyRegisterSuccess();
+  test('TC-ABS-004: Mute and unmute volume', async () => {
+    await aboutus.playVideoBigPlayButton();
+    await aboutus.muteUnmuteVolume();
   });
 
-  test('TC-Login-005: Signup without fill username and password', async () => {
-    await signup.signUpButton();
-    await signup.verifySignUpWithEmptyFields();
+  test('TC-ABS-005: Volume decrease and increase control', async () => {
+    await aboutus.playVideoBigPlayButton();
+    await aboutus.controlVolume();
   });
 
-  test('TC-Login-006: Signup without fill username', async () => {
-    await signup.inputUnregisteredDataSignUp('', undefined);
-    await signup.signUpButton();
-    await signup.verifySignUpWithEmptyFields();
+  test('TC-ABS-006: Control progress bar of video', async () => {
+    await aboutus.playVideoBigPlayButton();
+    await aboutus.progressBarControlVideo();
   });
 
-  test('TC-Login-007: Signup without fill password', async () => {
-    await signup.inputUnregisteredDataSignUp(undefined, '');
-    await signup.signUpButton();
-    await signup.verifySignUpWithEmptyFields();
+  test('TC-ABS-007: Time remaining decreases while video is playing', async () => {
+    await aboutus.playVideoBigPlayButton();
+    await aboutus.verifyTimeRemaining();
   });
 
-  test('TC-Login-008: User can close dialog using X button', async () => {
-    await signup.closeXSignUp();
+  test('TC-ABS-008: Picture-in-picture mode', async () => {
+    await aboutus.playVideoBigPlayButton();
+    await aboutus.verifyPicInPic();
   });
 
-  test('TC-Login-009: User can close dialog using Close button', async () => {
-    await signup.closeButtonSignUp();
+  test('TC-ABS-009: Fullscreen mode', async () => {
+    await aboutus.playVideoBigPlayButton();
+    await aboutus.verifyFullscreen();
+  });
+
+  test('TC-ABS-010: Close dialog using X button', async () => {
+    await aboutus.closeDialogXButton();
+  });
+
+  test('TC-ABS-011: Close dialog using Close button', async () => {
+    await aboutus.closeDialogCloseButton();
   });
 });

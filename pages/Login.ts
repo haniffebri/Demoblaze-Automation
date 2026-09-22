@@ -17,10 +17,6 @@ export class Login {
     this.loginTombol = page.getByRole('button', { name: 'Log in' })
   }
 
-  async open() {
-    await this.page.goto('/');
-  }
-
   async inputDataLogin(username: string, password: string){
     await this.usernameFieldLogin.fill(username);
     await this.passwordFieldLogin.fill(password);
