@@ -42,7 +42,7 @@ test.describe('Module: Login', () => {
   });
 
   test('TC-Login-006: Login with wrong username', async () => {
-    await login.inputDataLogin('ngemabokyuk', users.valid1.password);
+    await login.inputDataLogin('ngemieyuk', users.valid1.password);
     await login.loginButton();
     await login.verifyUserNotRegistered();
   });

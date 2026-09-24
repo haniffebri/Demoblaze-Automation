@@ -27,7 +27,7 @@ test.describe('Module: Signup', () => {
   });
 
   test('TC-Login-003: Sign Up with registered username and unregistered password', async () => {
-    await signup.inputUnregisteredDataSignUp('cuking');
+    await signup.inputUnregisteredDataSignUp('ciking');
     await signup.signUpButton();
     await signup.verifyUserRegistered();
   });

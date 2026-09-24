@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { Home } from '../pages/Home';
-import { Aboutus } from '../pages/Aboutus';
+import { Aboutus } from '../pages/AboutUs';
 
 test.describe('Module: About Us', () => {
   let aboutus: Aboutus;
