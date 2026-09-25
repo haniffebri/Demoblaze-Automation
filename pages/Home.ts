@@ -119,7 +119,7 @@ export class Home {
   }
 
   async checkProduct(product: string): Promise<void> {
-  await expect(this.page.getByText(product, { exact: true })).toBeVisible();
+    await expect(this.page.getByText(product, { exact: true })).toBeVisible();
   }
 
   async openProductDetail(product: string){
