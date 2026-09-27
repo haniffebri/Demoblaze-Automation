@@ -28,7 +28,7 @@ test.describe('Module: Cart', () => {
   test('TC-Login-005: Validasi Penghapusan 2 Produk', async () => {
   });
 
-  test('TC-Login-006: Interaksi Keranjang Kosong', async () => {
+  test('TC-Login-006: Validasi keranjang kosong ', async () => {
   });
 
   test('TC-Login-007: Validasi Modal Pemesanan', async () => {

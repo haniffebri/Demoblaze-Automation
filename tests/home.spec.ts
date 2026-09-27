@@ -1,27 +1,26 @@
 import { test } from '@playwright/test';
 import { Home } from '../pages/Home';
-import { ProductPage } from '../pages/ProductPage';
+// import { ProductPage } from '../pages/ProductDetail';
 
 test.describe('Home', () => {
 
-  test('user can view product detail', async ({ page }) => {
-    const home = new Home(page);
-    const productPage = new ProductPage(page);
-
-    await home.open();
-    await homePage.expectHomePageDisplayed();
-
-    await homePage.selectProduct('Samsung galaxy s6');
-
-    await productPage.expectProductDetailDisplayed('Samsung galaxy s6');
+  test('TC-Home-001: verify banner can slide automatic', async ({ page }) => {
+    
   });
 
-  test('user can filter products by category', async ({ page }) => {
-    const homePage = new HomePage(page);
+  test('TC-Home-002: verify banner can slide by click next and previous', async ({ page }) => {
+    
+  });
 
-    await homePage.open();
-    await homePage.filterByCategory('Laptops');
+  test('TC-Home-003: verify navbar berfungsi', async ({ page }) => {
+    
+  });
 
-    await homePage.expectProductDisplayed('Sony vaio i5');
+  test('TC-Home-004: verify bisa next product display', async ({ page }) => {
+    
+  });
+
+  test('TC-Home-005: ', async ({ page }) => {
+    
   });
 });
